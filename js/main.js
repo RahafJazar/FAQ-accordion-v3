@@ -5,11 +5,11 @@ let cartona = ``;
 
 for (let i = 0; i < questions.length; i++) {
     cartona += `<div class="question">
-        <div class="question-text" id="question-${i + 1}" onclick="toggleAnswer(${i})">
+        <button class="question-text" id="question-${i + 1}"  data-index="${i}">
           <h2>${questions[i].question} </h2>
           <img src="./assets/images/icon-plus.svg" alt="open  or closed icon " id="q-${i + 1}-icon">
 
-        </div>
+        </button>
         <div class="question-answer" id="answer-q-${i + 1}">
           <div> 
              <p>${questions[i].answer}</p>
@@ -19,9 +19,16 @@ for (let i = 0; i < questions.length; i++) {
       </div>`
 }
 document.getElementById("questions-section").innerHTML = cartona;
+let allQuestions = document.querySelectorAll(".question-text");
+allQuestions.forEach((q) => {
+    q.addEventListener("click", function () {
+        toggleAnswer(Number(q.getAttribute("data-index")));
+    });
+
+
+});
+
 function toggleAnswer(index) {
-    console.log("clicked")
-    let question = document.getElementById(`question-${index + 1}`);
     let answerOpenedFlag = document.getElementById(`answer-q-${index + 1}`).classList;
     if (answerOpenedFlag.contains("active")) {
         document.getElementById(`answer-q-${index + 1}`).classList.remove("active");
@@ -34,4 +41,3 @@ function toggleAnswer(index) {
         document.getElementById(`q-${index + 1}-icon`).setAttribute("src", "./assets/images/icon-minus.svg");
     }
 }
-window.toggleAnswer = toggleAnswer;

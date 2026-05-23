@@ -74,6 +74,11 @@ html {
     align-items: center;
     padding-block: 0.8em;
     cursor: pointer;
+    /* remove button effect */
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    text-align: left;
 }
 
 
