@@ -7,7 +7,7 @@ for (let i = 0; i < questions.length; i++) {
     cartona += `<div class="question">
         <div class="question-text" id="question-${i + 1}" onclick="toggleAnswer(${i})">
           <h2>${questions[i].question} </h2>
-          <img src="./assets/images/icon-plus.svg" alt="" id="q-${i + 1}-icon">
+          <img src="./assets/images/icon-plus.svg" alt="open  or closed icon " id="q-${i + 1}-icon">
 
         </div>
         <div class="question-answer" id="answer-q-${i + 1}">
