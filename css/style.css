@@ -83,13 +83,14 @@ html {
 
 
 
-.faqs-section .question .question-text h2 {
+.faqs-section .question .question-text span {
     font-size: 1rem;
+    font-weight: bold;
     color: var(--purple-950);
     transition: color 0.1s ease;
 }
 
-.faqs-section .question .question-text h2:hover {
+.faqs-section .question .question-text span:hover {
     color: var(--purple-700);
 }
 

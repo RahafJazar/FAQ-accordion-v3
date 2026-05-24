@@ -6,7 +6,7 @@ let cartona = ``;
 for (let i = 0; i < questions.length; i++) {
     cartona += `<div class="question">
         <button class="question-text" id="question-${i + 1}"  data-index="${i}">
-          <h2>${questions[i].question} </h2>
+          <span>${questions[i].question} </span>
           <img src="./assets/images/icon-plus.svg" alt="open  or closed icon " id="q-${i + 1}-icon">
 
         </button>
@@ -19,25 +19,28 @@ for (let i = 0; i < questions.length; i++) {
       </div>`
 }
 document.getElementById("questions-section").innerHTML = cartona;
-let allQuestions = document.querySelectorAll(".question-text");
-allQuestions.forEach((q) => {
-    q.addEventListener("click", function () {
-        toggleAnswer(Number(q.getAttribute("data-index")));
-    });
+
+let parent = document.getElementById("questions-section");
+parent.addEventListener("click", function (event) {
+    let questionButton = event.target.closest(".question-text");
+
+    if (!questionButton) return;
+
+    toggleAnswer(Number(questionButton.dataset.index));
+})
 
 
-});
 
 function toggleAnswer(index) {
-    let answerOpenedFlag = document.getElementById(`answer-q-${index + 1}`).classList;
-    if (answerOpenedFlag.contains("active")) {
-        document.getElementById(`answer-q-${index + 1}`).classList.remove("active");
-        console.log(document.getElementById(`answer-q-${index + 1}`).classList);
-        document.getElementById(`q-${index + 1}-icon`).setAttribute("src", "./assets/images/icon-plus.svg");
+    const answer = document.getElementById(`answer-q-${index + 1}`);
+    const icon = document.getElementById(`q-${index + 1}-icon`);
+    const isOpened = answer.classList.contains("active");
+    if (isOpened) {
+        answer.classList.remove("active");
+        icon.setAttribute("src", "./assets/images/icon-plus.svg");
     }
     else {
-        document.getElementById(`answer-q-${index + 1}`).classList.add("active");
-        console.log(document.getElementById(`answer-q-${index + 1}`).classList);
-        document.getElementById(`q-${index + 1}-icon`).setAttribute("src", "./assets/images/icon-minus.svg");
+        answer.classList.add("active");
+        icon.setAttribute("src", "./assets/images/icon-minus.svg");
     }
 }
